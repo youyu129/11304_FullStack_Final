@@ -10,9 +10,7 @@
 <body>
 
 <div class="container mt-3">
-    <h2>Student</h2>
-  <p>blade</p>            
-  <a href="{{route('students.create')}}">create</a>
+
   {{-- 原生php --}}
 <?php
 // dd($data);
@@ -23,28 +21,55 @@
 // dd($data);
 @endphp
 
-  <table class="table table-bordered">
-    <thead>
+<h2>Hello DB</h2>
+<p>資料庫撈出來的資料</p>
+<button class="btn btn-success">Add</button>
+{{-- <a href="{{route('students.create')}}">create</a> --}}
+<table class="table text-center">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>My_Mobile</th>
+      <td>Option</td>
+    </tr>
+  </thead>
+  <tbody>
+      @foreach ($data as $value)
       <tr>
-        <th width="10%">ID</th>
-        <th>NAME</th>
-        <th>MOBILE</th>
-      </tr>
-    </thead>
-    <tbody>
-      @php
-      // dd($data)
-      @endphp
-        @foreach($data as $value)
-      <tr>
-        <td>{{$value->id}}</td>
-        <td>{{$value->name}}</td>
-        <td>{{$value->mobile}}</td>
+          <td>{{$value->my_id}}</td>
+          <td>{{$value->my_name}}</td>
+          <td>{{$value->my_mobile}}</td>
+          <td><button class="btn btn-primary">Edit</button><button class="btn btn-danger ms-5">Del</button></td>
       </tr>
       @endforeach
-    </tbody>
-  </table>
-
+  </tbody>
+</table>
+<br>
+<br>
+<hr>
+<br>
+<br>
+<h2>Hello Controller</h2>
+<p>controller 的假資料</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      {{-- <th>Mobile</th> --}}
+    </tr>
+  </thead>
+  <tbody>
+      @foreach ($data_fake as $value)
+      <tr>
+          <td>{{$value['id']}}</td>
+          <td>{{$value['name']}}</td>
+          {{-- <td>{{$value['mobile']}}</td> --}}
+      </tr>
+      @endforeach
+  </tbody>
+</table>
 
 </div>
 
