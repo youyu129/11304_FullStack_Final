@@ -23,8 +23,10 @@
 
 <h2>Hello DB</h2>
 <p>資料庫撈出來的資料</p>
-<button class="btn btn-success">Add</button>
-{{-- <a href="{{route('students.create')}}">create</a> --}}
+<p>
+  <a href="{{route('students.create')}}" class="btn btn-success">Add</a>
+</p>
+{{--  --}}
 <table class="table text-center">
   <thead>
     <tr>
@@ -40,7 +42,11 @@
           <td>{{$value->my_id}}</td>
           <td>{{$value->my_name}}</td>
           <td>{{$value->my_mobile}}</td>
-          <td><button class="btn btn-primary">Edit</button><button class="btn btn-danger ms-5">Del</button></td>
+          <td>
+            {{-- {{route('students.edit')}} --}}
+            {{-- {{route('students.destroy')}} --}}
+            <a href="" class="btn btn-primary">Edit</a>
+            <a href="" class="btn btn-danger ms-5">Del</a></td>
       </tr>
       @endforeach
   </tbody>
