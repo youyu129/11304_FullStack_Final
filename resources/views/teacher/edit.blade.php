@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Add</title>
+  <title>Edit</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -10,22 +10,26 @@
 <body>
 
 <div class="container mt-3">
-  <h2>Add</h2>
-  <form action="{{route('students.store')}}" method="post">
+  <h2>Teacher Edit</h2>
+  @php
+  // dd($data);
+  @endphp
+
+  <form action="{{route('teachers.update',['teacher'=>$data['id']])}}" method="post">
     @csrf
+    
+    @method('put')
+    {{-- @method('put')等同於 --}}
+    {{-- <input type="hidden" name="_method" value="put"> --}}
+  
     <div class="mb-3 mt-3">
       <label for="text">Name:</label>
-      <input type="text" class="form-control" id="name" placeholder="Enter name" name="name">
+      <input type="text" class="form-control" id="name" value="{{$data['name']}}" name="name">
     </div>
     <div class="mb-3">
       <label for="text">Mobile:</label>
-      <input type="text" class="form-control" id="mobile" placeholder="Enter mobile" name="mobile">
+      <input type="text" class="form-control" id="mobile" value="{{$data['mobile']}}" name="mobile">
     </div>
-    {{-- <div class="form-check mb-3">
-      <label class="form-check-label">
-        <input class="form-check-input" type="checkbox" name="remember"> Remember me
-      </label>
-    </div> --}}
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 </div>

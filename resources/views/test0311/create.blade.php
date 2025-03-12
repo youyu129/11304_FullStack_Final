@@ -10,8 +10,8 @@
 <body>
 
 <div class="container mt-3">
-  <h2>Add</h2>
-  <form action="{{route('students.store')}}" method="post">
+  <h2>Test0311 Add</h2>
+  <form action="{{route('test0311s.store')}}" method="post">
     @csrf
     <div class="mb-3 mt-3">
       <label for="text">Name:</label>
