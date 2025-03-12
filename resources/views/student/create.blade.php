@@ -10,7 +10,7 @@
 <body>
 
 <div class="container mt-3">
-  <h2>Add</h2>
+  <h2>Student Add</h2>
   <form action="{{route('students.store')}}" method="post">
     @csrf
     <div class="mb-3 mt-3">
@@ -21,11 +21,10 @@
       <label for="text">Mobile:</label>
       <input type="text" class="form-control" id="mobile" placeholder="Enter mobile" name="mobile">
     </div>
-    {{-- <div class="form-check mb-3">
-      <label class="form-check-label">
-        <input class="form-check-input" type="checkbox" name="remember"> Remember me
-      </label>
-    </div> --}}
+    <div class="mb-3">
+      <label for="text">Phone:</label>
+      <input type="text" class="form-control" id="phone" placeholder="Enter phone" name="phone">
+    </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 </div>

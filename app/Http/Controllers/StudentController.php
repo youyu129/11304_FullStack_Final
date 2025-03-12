@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\Phone;
 use App\Models\Student;
 use Illuminate\Http\Request;
 
@@ -33,12 +34,12 @@ class StudentController extends Controller
         // $data = DB::table('students')
         //     ->select('id', 'name', 'mobile')
         //     ->get();
-
         $data = Student::get();
+        $data = Student::with('phone')->get();
 
         // $data = DB::table('students')->get();
         // dd($data);
-
+        // dd($data[0]->phone);
         return view('student.index', ['data' => $data, 'data_fake' => $data_fake]);
     }
 
@@ -61,12 +62,17 @@ class StudentController extends Controller
         $input = $request->except('_token');
         // dd($input);
 
-        // $data = new Student;
+        // 主表
+        $data         = new Student;
+        $data->name   = $input['name'];
+        $data->mobile = $input['mobile'];
+        $data->save();
 
-        // $data->name   = $request->name;
-        // $data->mobile = $request->mobile;
-
-        // $data->save();
+        // 子表
+        $item             = new Phone;
+        $item->student_id = $data->id;
+        $item->phone      = $input['phone'];
+        $item->save();
 
         return redirect()->route('students.index');
     }
@@ -121,8 +127,13 @@ class StudentController extends Controller
     public function destroy(string $id)
     {
         // dd("hello destroy $id");
-        $data = Student::where('id', $id)->first();
-        $data->delete();
+
+        // 刪除子表
+        Phone::where('student_id', $id)->delete();
+
+        // 刪除主表
+        Student::where('id', $id)->delete();
+
         return redirect()->route('students.index');
     }
 }
